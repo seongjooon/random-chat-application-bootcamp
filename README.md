@@ -47,7 +47,6 @@
 - Redux
 - Node
 - Express
-- MongoDB
 
 위에 나열된 기술 스택 외에는 자유롭게 사용하셔도 괜찮습니다.
 
