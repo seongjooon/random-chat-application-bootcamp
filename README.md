@@ -39,7 +39,7 @@
 - 프론트엔드 Boilerplate는 [Create React App](https://create-react-app.dev)을 사용하시기를 추천드립니다.
 - 백엔드 Boilerplate는 [Express Generator](https://expressjs.com/en/starter/generator.html)을 사용하시기를 추천드립니다.
 - 과제 제출 시에는 전체 과제 디렉토리 내에 `frontend`(React App)와 `backend`(Express App) 디렉토리를 별도로 만들어 제출해주세요.
-- 프론트엔드와 백엔드는 별개의 프로젝트로 구성하여 각자 다른 도메인 혹은 포트에서 구동하도록 구성해주시기 바랍니다.
+- 프론트엔드와 백엔드는 별개의 프로젝트로 구성하여 각각 다른 도메인 혹은 포트에서 구동하도록 구성해주시기 바랍니다.
 
 #### Minimum Tech Stack Requirements
 
