@@ -16,10 +16,9 @@
 
 30점 이상 Pass입니다.
 
-- (15) Feature Requirements
-- (10) Consistent Code Style
-- (10) Code Readability
-- (10) Personal Improvements
+- (30) Feature Requirements
+- (10) Code Readability & Consistent Code Style
+- (5) Personal Improvements
 - (5) Git Usage
 
 ### Test Result
@@ -30,7 +29,7 @@
 
 - 바닐라코딩 멘토 혹은 수료생들에게는 질문을 할 수 없습니다.
 - 동기들과의 토론은 자유롭게 나누어도 괜찮습니다만, 반드시 스스로 양심껏 작업해주시기 바랍니다.
-- **동기들과의 토론은 "구두"로만 가능합니다.** 슬랙 등을 이용하여 코드를 주고 받거나, 서로의 코드를 보여주고 공유하는 행위는 금지됩니다.
+- **동기들과의 토론은 "구두"로만 가능합니다.** 슬랙 등을 이용하여 코드나 링크를 주고 받거나, 서로의 작업물을 보여주고 공유하는 행위는 금지됩니다.
 - 어려움을 겪고 있는 사람을 도와주고 함께 이끌어 가는 것이 협업의 시작입니다. 그런 모습을 보여주시기 바랍니다.
 - 테스트 기간 동안에는 모두 집중하여 작업하는 시간이니 크게 떠드는 것은 자제해주시고 서로에 대한 배려에 더욱 신경써 주시기 바랍니다.
 
@@ -47,6 +46,7 @@
 - Redux
 - Node
 - Express
+- CSS Preprocessor (Less|Sass|Stylus)
 
 위에 나열된 기술 스택 외에는 자유롭게 사용하셔도 괜찮습니다.
 
@@ -71,5 +71,5 @@
 
 #### 3. 기타
 
-- [ ] Test Code 작성하기: React Component Unit Test와 Backend API Unit Test
+- [ ] Test Code 작성하기: 테스트 할 수 있다고 판단되는 최대한의 코드에 대해 테스트를 작성하세요.
 - [ ] 나열된 필수 사항 외에 자유롭게 추가 기능을 넣어주셔도 괜찮습니다.
