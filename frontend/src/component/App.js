@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import User from './User';
+import Room from './Room';
+
+
 import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:5000');
@@ -18,7 +24,6 @@ class App extends Component {
   }
 
   onTextChange = e => {
-    if (e.target.name === 'msg') console.log(this.state.nickname);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -27,6 +32,10 @@ class App extends Component {
     socket.emit('chat message', { nickname, msg });
     this.setState({ msg: '' });
   };
+
+  onUserEnter = () => {
+
+  }
 
   renderChat() {
     const { chat } = this.state;
@@ -42,18 +51,30 @@ class App extends Component {
   render() {
     const { msg, nickname } = this.state;
     return (
-      <div>
-        <span>Nickname</span>
-        <input
-          name='nickname'
-          onChange={e => this.onTextChange(e)}
-          value={nickname}
+      <Switch>
+        <Route
+          exact
+          path='/'
+          render={() => (
+            <User
+              nickname={nickname}
+              onTextChange={this.onTextChange}
+              onUserEnter={this.onUserEnter}
+            />
+          )}
         />
-        <span>Message</span>
-        <input name='msg' onChange={e => this.onTextChange(e)} value={msg} />
-        <button onClick={this.onMessageSubmit}>Send</button>
-        <div>{this.renderChat()}</div>
-      </div>
+        <Route
+          exact
+          path='/room'
+          render={() => (
+            <Room
+              msg={msg}
+              onTextChange={this.onTextChange}
+              onMessageSubmit={this.onMessageSubmit}
+            />
+          )}
+        />
+      </Switch>
     );
   }
 }
