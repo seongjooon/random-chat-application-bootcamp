@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Room = ({ msg, onTextChange, onMessageSubmit }) => {
+const Room = ({ username, sendMessage }) => {
+  const [message, setMessage] = useState('');
+
   return (
-    <div>
+    <>
+      <div>{username}님이 입장하셨습니다.</div>
       <span>Message</span>
-      <input name='msg' onChange={e => onTextChange(e)} value={msg} />
-      <button onClick={onMessageSubmit()}>Send</button>
-    </div>
+      <input onChange={e => setMessage(e.target.value)} />
+      <input type='submit' onClick={() => sendMessage(message)} value='Send' />
+    </>
   );
 };
 

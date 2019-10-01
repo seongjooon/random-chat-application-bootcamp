@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
+import { switchPageReducer } from './switchPageReducer';
 
-const initState = {};
+export const initState = {
+  username: ''
+};
 
 export default combineReducers({
-  initState
+  switchPageReducer
 });
