@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const Room = ({ username, enterMessage, sendMessage, messageList }) => {
+const Room = ({ username, sendMessage, messageList }) => {
   const [message, setMessage] = useState('');
-  console.log(enterMessage);
+
   return (
     <>
       <input onChange={e => setMessage(e.target.value)} />
@@ -12,14 +12,18 @@ const Room = ({ username, enterMessage, sendMessage, messageList }) => {
         value='Send'
       />
       <div>
-        {messageList.map((message, index) => (
-          <div className='message-element' key={index}>
-            <div>
-              {message.username} : {message.message}
+        {messageList.map((message, index) =>
+          index === 0 ? (
+            <div key={index}>Entered {message}</div>
+          ) : (
+            <div className='message-element' key={index}>
+              <div>
+                {message.username} : {message.message}
+              </div>
+              {/* <div>{message.message}</div> */}
             </div>
-            {/* <div>{message.message}</div> */}
-          </div>
-        ))}
+          )
+        )}
       </div>
     </>
   );

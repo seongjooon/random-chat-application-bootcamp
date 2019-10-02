@@ -7,7 +7,6 @@ export const socket = io.connect('http://localhost:5000');
 
 const mapStateToProps = state => ({
   username: state.username,
-  enterMessage: state.enterMessage,
   messageList: state.messageList
 });
 

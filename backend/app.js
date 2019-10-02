@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
+const connectSocket = require('./socket');
 
 const app = express();
 const server = require('http').Server(app);
@@ -34,41 +35,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const USER_QUEUE = [];
-const ROOM_STORAGE = {};
-const USER_NAMES = {};
-
-io.on('connection', socket => {
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-  const { id } = socket.client;
-  console.log(`User Connected: ${id}`);
-
-  socket.on('join room', ({ username }) => {
-    if (USER_QUEUE.length) {
-      const PEER = USER_QUEUE.pop();
-      const ROOM = `${socket.id}#${PEER.id}`;
-
-      socket.join(ROOM);
-      PEER.join(ROOM);
-
-      ROOM_STORAGE[socket.id] = ROOM;
-      ROOM_STORAGE[PEER.id] = ROOM;
-
-      PEER.emit('enter message', { username: USER_NAMES[socket.id] });
-      socket.emit('enter message', { username: USER_NAMES[PEER.id] });
-    } else {
-      USER_QUEUE.push(socket);
-      USER_NAMES[socket.id] = username;
-      socket.emit('enter message', { username: USER_NAMES[socket.id] });
-    }
-  });
-
-  socket.on('chat', messageData => {
-    io.to(ROOM_STORAGE[socket.id]).emit('send message', messageData);
-  });
-});
+connectSocket(io);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Listen on *: ${PORT}`));

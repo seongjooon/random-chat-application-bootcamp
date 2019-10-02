@@ -5,7 +5,6 @@ import Room from './Room';
 
 const App = ({
   username,
-  enterMessage,
   messageList,
   switchPage,
   sendMessage
@@ -17,7 +16,6 @@ const App = ({
       ) : (
         <Room
           username={username}
-          enterMessage={enterMessage}
           sendMessage={sendMessage}
           messageList={messageList}
         />
