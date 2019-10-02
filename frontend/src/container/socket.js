@@ -13,7 +13,7 @@ const configureSocket = dispatch => {
     dispatch({ type: 'SEND_MESSAGE', messageData });
   });
 
-  socket.on('chat end', ({ username, room }) => {
+  socket.on('chat end', () => {
     socket.emit('leave room');
   });
 

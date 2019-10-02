@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "concurrently": "^4.1.2",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.3",
+    "yarn": "^1.19.0"
   }
 }

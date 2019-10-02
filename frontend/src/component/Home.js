@@ -10,7 +10,7 @@ const Home = ({ switchPage }) => {
         <input onChange={e => setUsername(e.target.value)} />
         <input
           type='submit'
-          onClick={() => switchPage(username)}
+          onClick={() => switchPage(username, false)}
           value='Enter'
         />
       </div>

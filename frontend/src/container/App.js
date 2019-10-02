@@ -15,14 +15,20 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   configureSocket(dispatch);
   return {
-    switchPage(username) {
+    switchPage(username, isNext) {
       if (username) {
+        if (isNext) {
+          socket.emit('leave room'); //실행되면서 실제로 방을 퇴장하게됨
+          // 여기서 대화내용 삭제
+        }
         dispatch({ type: 'SWITCH_PAGE', username });
         joinRoom(username);
       }
     },
     sendMessage(messageData) {
-      socket.emit('chat', messageData);
+      if (messageData) {
+        socket.emit('chat', messageData);
+      }
     }
   };
 };

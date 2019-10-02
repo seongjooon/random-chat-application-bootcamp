@@ -18,7 +18,7 @@ const Room = ({
         onClick={() => sendMessage({ username, message })}
         value='Send'
       />
-      <input type='submit' onClick={() => switchPage(username)} value='Next' />
+      <input type='submit' onClick={() => switchPage(username, true)} value='Next' />
       <div>{hasPeer ? <div>W8...</div> : <div>Entered {enterMessage}</div>}</div>
 
       <div>
