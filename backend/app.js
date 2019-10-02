@@ -36,6 +36,7 @@ app.use(function(err, req, res, next) {
 
 const USER_QUEUE = [];
 const ROOM_STORAGE = {};
+const USER_NAMES = {};
 
 io.on('connection', socket => {
   socket.on('disconnect', () => {
@@ -43,27 +44,29 @@ io.on('connection', socket => {
   });
   const { id } = socket.client;
   console.log(`User Connected: ${id}`);
-  socket.leave(id);
+
   socket.on('join room', ({ username }) => {
     if (USER_QUEUE.length) {
       const PEER = USER_QUEUE.pop();
       const ROOM = `${socket.id}#${PEER.id}`;
-  
+
       socket.join(ROOM);
       PEER.join(ROOM);
-  
+
       ROOM_STORAGE[socket.id] = ROOM;
       ROOM_STORAGE[PEER.id] = ROOM;
-  
-      // PEER.emit('chat start', { name: names[socket.id], ROOM });
-      // socket.emit('chat start', { name: names[PEER.id], ROOM });
+
+      PEER.emit('enter message', { username: USER_NAMES[socket.id] });
+      socket.emit('enter message', { username: USER_NAMES[PEER.id] });
     } else {
       USER_QUEUE.push(socket);
+      USER_NAMES[socket.id] = username;
+      socket.emit('enter message', { username: USER_NAMES[socket.id] });
     }
-    // socket.join(firstUser.id + socket.id, () => {
-    //   io.to(firstUser.id + socket.id).emit(username);
-    // });
-    console.log(io.of('/').adapter.rooms);
+  });
+
+  socket.on('chat', messageData => {
+    io.to(ROOM_STORAGE[socket.id]).emit('send message', messageData);
   });
 });
 

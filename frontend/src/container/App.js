@@ -1,22 +1,28 @@
 import { connect } from 'react-redux';
 import App from '../component/App';
+import configureSocket, { joinRoom } from './socket';
 import io from 'socket.io-client';
 
-const socket = io.connect('http://localhost:5000');
+export const socket = io.connect('http://localhost:5000');
 
 const mapStateToProps = state => ({
-  username: state.switchPageReducer
+  username: state.username,
+  enterMessage: state.enterMessage,
+  messageList: state.messageList
 });
 
-const mapDispatchToProps = dispatch => ({
-  switchPage(username) {
-    dispatch({ type: 'SWITCH_PAGE', username });
-    socket.emit('join room', { username });
-  },
-  sendMessage(message) {
-    dispatch({ type: 'SEND_MESSAGE', message });
-  }
-});
+const mapDispatchToProps = dispatch => {
+  configureSocket(dispatch);
+  return {
+    switchPage(username) {
+      dispatch({ type: 'SWITCH_PAGE', username });
+      joinRoom(username);
+    },
+    sendMessage(messageData) {
+      socket.emit('chat', messageData);
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,

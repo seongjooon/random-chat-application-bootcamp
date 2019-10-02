@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 
-const Room = ({ username, sendMessage }) => {
+const Room = ({ username, enterMessage, sendMessage, messageList }) => {
   const [message, setMessage] = useState('');
-
+  console.log(enterMessage);
   return (
     <>
-      <div>{username}님이 입장하셨습니다.</div>
-      <span>Message</span>
       <input onChange={e => setMessage(e.target.value)} />
-      <input type='submit' onClick={() => sendMessage(message)} value='Send' />
+      <input
+        type='submit'
+        onClick={() => sendMessage({ username, message })}
+        value='Send'
+      />
+      <div>
+        {messageList.map((message, index) => (
+          <div className='message-element' key={index}>
+            <div>
+              {message.username} : {message.message}
+            </div>
+            {/* <div>{message.message}</div> */}
+          </div>
+        ))}
+      </div>
     </>
   );
 };
