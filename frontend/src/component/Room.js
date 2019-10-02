@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
-const Room = ({ username, hasPeer, messageList, sendMessage }) => {
+const Room = ({
+  username,
+  hasPeer,
+  enterMessage,
+  messageList,
+  sendMessage,
+  switchPage
+}) => {
   const [message, setMessage] = useState('');
 
   return (
@@ -11,20 +18,18 @@ const Room = ({ username, hasPeer, messageList, sendMessage }) => {
         onClick={() => sendMessage({ username, message })}
         value='Send'
       />
-      <div>{hasPeer ? <div>W8...</div> : null}</div>
+      <input type='submit' onClick={() => switchPage(username)} value='Next' />
+      <div>{hasPeer ? <div>W8...</div> : <div>Entered {enterMessage}</div>}</div>
+
       <div>
-        {messageList.map((message, index) =>
-          !index ? (
-            <div key={index}>Entered {message}</div>
-          ) : (
-            <div className='message-element' key={index}>
-              <div>
-                {message.username} : {message.message}
-              </div>
-              {/* <div>{message.message}</div> */}
+        {messageList.map((message, index) => (
+          <div className='message-element' key={index}>
+            <div>
+              {message.username} : {message.message}
             </div>
-          )
-        )}
+            {/* <div>{message.message}</div> */}
+          </div>
+        ))}
       </div>
     </>
   );

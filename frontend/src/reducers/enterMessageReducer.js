@@ -1,8 +1,8 @@
 import { initState } from './index';
 
-export const switchPageReducer = (state = initState.username, action) => {
+export const enterMessageReducer = (state = initState.enterMessage, action) => {
   switch (action.type) {
-    case 'SWITCH_PAGE':
+    case 'ENTER_MESSAGE':
       return action.username;
     default:
       return state;

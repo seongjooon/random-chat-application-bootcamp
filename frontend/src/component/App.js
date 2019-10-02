@@ -6,9 +6,11 @@ import Room from './Room';
 const App = ({
   username,
   hasPeer,
+  enterMessage,
   messageList,
   switchPage,
-  sendMessage
+  sendMessage,
+  findNextUser
 }) => {
   return (
     <>
@@ -18,8 +20,10 @@ const App = ({
         <Room
           username={username}
           hasPeer={hasPeer}
+          enterMessage={enterMessage}
           messageList={messageList}
           sendMessage={sendMessage}
+          switchPage={switchPage}
         />
       )}
     </>

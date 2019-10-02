@@ -8,6 +8,7 @@ export const socket = io.connect('http://localhost:5000');
 const mapStateToProps = state => ({
   username: state.username,
   hasPeer: state.hasPeer,
+  enterMessage: state.enterMessage,
   messageList: state.messageList
 });
 
@@ -15,8 +16,10 @@ const mapDispatchToProps = dispatch => {
   configureSocket(dispatch);
   return {
     switchPage(username) {
-      dispatch({ type: 'SWITCH_PAGE', username });
-      joinRoom(username);
+      if (username) {
+        dispatch({ type: 'SWITCH_PAGE', username });
+        joinRoom(username);
+      }
     },
     sendMessage(messageData) {
       socket.emit('chat', messageData);

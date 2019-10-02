@@ -41,10 +41,11 @@ function connectSocket(io) {
 
     socket.on('leave room', () => {
       const room = ROOM_STORAGE[socket.id];
-      socket.broadcast.to(room).emit('chat end');
+      socket.leave(room);
+      socket.broadcast.to(room).emit('chat end', {username: USER_NAMES[socket.id], room});
       let peerId = room.split('#');
       peerId = peerId[0] === socket.id ? peerId[1] : peerId[0];
-      findPeerForLoneSocket(allUsers[peerID]);
+      findPeerForLoneSocket(ALL_USERS[peerId]);
       findPeerForLoneSocket(socket);
     });
 
