@@ -10,7 +10,7 @@ const App = ({
   messageList,
   switchPage,
   sendMessage,
-  findNextUser
+  createRestart
 }) => {
   return (
     <>
@@ -24,6 +24,7 @@ const App = ({
           messageList={messageList}
           sendMessage={sendMessage}
           switchPage={switchPage}
+          createRestart={createRestart}
         />
       )}
     </>

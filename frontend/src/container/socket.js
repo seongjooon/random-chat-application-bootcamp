@@ -14,7 +14,8 @@ const configureSocket = dispatch => {
   });
 
   socket.on('chat end', () => {
-    socket.emit('leave room');
+    dispatch({ type: 'CREATE_RESTART', isRestart: true });
+    leaveRoom();
   });
 
   socket.on('disconnect', function(data) {
@@ -24,5 +25,7 @@ const configureSocket = dispatch => {
 };
 
 export const joinRoom = username => socket.emit('join room', { username });
+
+export const leaveRoom = () => socket.emit('leave room');
 
 export default configureSocket;

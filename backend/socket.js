@@ -45,6 +45,7 @@ function connectSocket(io) {
       socket.broadcast.to(room).emit('chat end');
       let peerId = room.split('#');
       peerId = peerId[0] === socket.id ? peerId[1] : peerId[0];
+      
       findPeerForLoneSocket(ALL_USERS[peerId]);
       findPeerForLoneSocket(socket);
     });
