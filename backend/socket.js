@@ -14,10 +14,12 @@ const findPeerForLoneSocket = socket => {
     ROOM_STORAGE[socket.id] = ROOM;
     ROOM_STORAGE[PEER.id] = ROOM;
 
+    PEER.emit('wait message', false);
     PEER.emit('enter message', { username: USER_NAMES[socket.id] });
     socket.emit('enter message', { username: USER_NAMES[PEER.id] });
   } else {
     USER_QUEUE.push(socket);
+    socket.emit('wait message', true);
   }
 };
 

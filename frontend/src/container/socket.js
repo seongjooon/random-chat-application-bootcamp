@@ -1,8 +1,11 @@
 import { socket } from './App';
 
 const configureSocket = dispatch => {
+  socket.on('wait message', hasPeer => {
+    dispatch({ type: 'WAIT_MESSAGE', hasPeer });
+  });
+
   socket.on('enter message', ({ username }) => {
-    console.log(username);
     dispatch({ type: 'ENTER_MESSAGE', username });
   });
 

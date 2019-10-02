@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Room = ({ username, sendMessage, messageList }) => {
+const Room = ({ username, hasPeer, messageList, sendMessage }) => {
   const [message, setMessage] = useState('');
 
   return (
@@ -11,9 +11,10 @@ const Room = ({ username, sendMessage, messageList }) => {
         onClick={() => sendMessage({ username, message })}
         value='Send'
       />
+      <div>{hasPeer ? <div>W8...</div> : null}</div>
       <div>
         {messageList.map((message, index) =>
-          index === 0 ? (
+          !index ? (
             <div key={index}>Entered {message}</div>
           ) : (
             <div className='message-element' key={index}>
