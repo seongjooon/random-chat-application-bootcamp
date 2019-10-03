@@ -9,8 +9,9 @@ const mapStateToProps = state => ({
   username: state.username,
   hasPeer: state.hasPeer,
   enterMessage: state.enterMessage,
+  isTyping: state.isTyping,
   messageList: state.messageList,
-  createRestart: state.createRestart
+  restartButton: state.restartButton
 });
 
 const mapDispatchToProps = dispatch => {
@@ -26,9 +27,12 @@ const mapDispatchToProps = dispatch => {
         joinRoom(username);
       }
     },
+    handleTypingAction() {
+      socket.emit('is typing');
+    },
     sendMessage(messageData) {
       if (messageData) {
-        socket.emit('chat', messageData);
+        socket.emit('send', messageData);
       }
     }
   };

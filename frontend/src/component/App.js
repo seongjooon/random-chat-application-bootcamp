@@ -7,10 +7,12 @@ const App = ({
   username,
   hasPeer,
   enterMessage,
+  isTyping,
   messageList,
   switchPage,
   sendMessage,
-  createRestart
+  restartButton,
+  handleTypingAction
 }) => {
   return (
     <>
@@ -21,10 +23,12 @@ const App = ({
           username={username}
           hasPeer={hasPeer}
           enterMessage={enterMessage}
+          isTyping={isTyping}
           messageList={messageList}
           sendMessage={sendMessage}
           switchPage={switchPage}
-          createRestart={createRestart}
+          handleTypingAction={handleTypingAction}
+          restartButton={restartButton}
         />
       )}
     </>

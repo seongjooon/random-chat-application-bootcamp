@@ -5,6 +5,14 @@ const configureSocket = dispatch => {
     dispatch({ type: 'WAIT_MESSAGE', hasPeer });
   });
 
+  socket.on('typing', () => {
+    dispatch({ type: 'IS_TYPING' });
+  });
+
+  socket.on('stopTyping', () => {
+    dispatch({ type: 'STOP_TYPING' });
+  });
+
   socket.on('enter message', ({ username }) => {
     dispatch({ type: 'ENTER_MESSAGE', username });
   });
@@ -14,8 +22,9 @@ const configureSocket = dispatch => {
   });
 
   socket.on('chat end', () => {
-    dispatch({ type: 'CREATE_RESTART', isRestart: true });
     leaveRoom();
+    dispatch({ type: 'CREATE_RESTART', isRestart: true });
+    // dispatch({ type: 'DELETE_MESSAGE_LIST' });
   });
 
   socket.on('disconnect', function(data) {
