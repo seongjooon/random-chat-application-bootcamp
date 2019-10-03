@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.scss';
 
 import Home from './Home';
 import Room from './Room';
