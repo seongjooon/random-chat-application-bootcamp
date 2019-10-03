@@ -6,15 +6,20 @@ const Home = ({ switchPage }) => {
 
   return (
     <>
-      <div className='user-input-box'>
-        <div>What's your name?</div>
-        <input className='home-name-box' onChange={e => setUsername(e.target.value)} />
-        <input
-          className='home-submit'
-          type='submit'
-          onClick={() => switchPage(username, false)}
-          value='Start'
-        />
+      <div className='home-root'>
+        <div className='user-input-box'>
+          <div>What's your name?</div>
+          <input
+            className='home-name-box'
+            onChange={e => setUsername(e.target.value)}
+          />
+          <input
+            className='home-submit'
+            type='submit'
+            onClick={() => switchPage(username, false)}
+            value='Start'
+          />
+        </div>
       </div>
     </>
   );
