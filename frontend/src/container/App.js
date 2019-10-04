@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => {
       socket.emit('is typing');
     },
     removeInputBox(text) {
-      dispatch({type:'INPUT_TEXT', text })
+      dispatch({ type: 'INPUT_TEXT', text });
     },
     sendMessage(messageData) {
       if (messageData) {
@@ -39,8 +39,8 @@ const mapDispatchToProps = dispatch => {
       }
     },
     exitChatRoom() {
-      socket.emit('disconnect');
       dispatch({ type: 'HOME' });
+      socket.emit('exit room')
     }
   };
 };

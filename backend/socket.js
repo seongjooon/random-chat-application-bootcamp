@@ -23,11 +23,8 @@ const findPeer = socket => {
   }
 };
 
-function connectSocket(io) {
+const connectSocket = io => {
   io.on('connection', socket => {
-    const { id } = socket.client;
-    console.log(`User Connected: ${id}`);
-
     socket.on('join room', ({ username }) => {
       USER_NAMES[socket.id] = username;
       ALL_USERS[socket.id] = socket;
@@ -46,10 +43,10 @@ function connectSocket(io) {
 
     socket.on('leave room', () => {
       const ROOM = ROOM_STORAGE[socket.id];
-      socket.leave(ROOM);
       socket.broadcast
-        .to(ROOM)
-        .emit('chat end', { username: USER_NAMES[socket.id] });
+      .to(ROOM)
+      .emit('chat end', { username: USER_NAMES[socket.id] });
+      socket.leave(ROOM);
       let peerId = ROOM.split('#');
       peerId = peerId[0] === socket.id ? peerId[1] : peerId[0];
 
@@ -57,10 +54,16 @@ function connectSocket(io) {
       findPeer(socket);
     });
 
+    socket.on('exit room', () => {
+      const ROOM = ROOM_STORAGE[socket.id];
+      socket.broadcast.to(ROOM).emit('exit chat');
+      socket.leave(ROOM);
+    });
+
     socket.on('disconnect', () => {
       console.log('Disconnect');
     });
   });
-}
+};
 
 module.exports = connectSocket;

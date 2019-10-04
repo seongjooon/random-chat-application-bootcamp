@@ -15,18 +15,19 @@ const configureSocket = dispatch => {
 
   socket.on('send message', messageData => {
     dispatch({ type: 'SEND_MESSAGE', messageData });
-    // dispatch({ type: 'STOP_TYPING' });
   });
 
   socket.on('chat end', ({ username }) => {
-    dispatch({ type: 'DELETE_MESSAGE_LIST' });
     leaveRoom();
     dispatch({ type: 'SWITCH_PAGE', username });
     joinRoom(username);
   });
 
-  socket.on('disconnect', function(data) {
-    // handle server/connection falling
+  socket.on('exit chat', () => {
+    dispatch({ type: 'HOME' });
+  });
+
+  socket.on('disconnect', () => {
     console.log('Connection fell or your browser is closing.');
   });
 };
