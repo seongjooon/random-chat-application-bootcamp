@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> matches snapshot 1`] = `
+<Home
+  switchPage={[MockFunction]}
+>
+  <div
+    className="home-root"
+  >
+    <div
+      className="user-input-box"
+    >
+      <div>
+        What's your 
+        <span>
+          Nickname
+        </span>
+        ?
+      </div>
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          className="home-name-box"
+          onChange={[Function]}
+        />
+        <input
+          className="home-submit"
+          type="submit"
+          value="Start"
+        />
+      </form>
+    </div>
+  </div>
+</Home>
+`;
