@@ -13,11 +13,13 @@ const App = ({
   switchPage,
   sendMessage,
   handleTypingAction,
+  inputBoxText,
+  removeInputBox,
   exitChatRoom
 }) => {
   return (
     <>
-      {username ? (
+      {!username ? (
         <Home switchPage={switchPage} />
       ) : (
         <Room
@@ -29,6 +31,8 @@ const App = ({
           sendMessage={sendMessage}
           switchPage={switchPage}
           handleTypingAction={handleTypingAction}
+          removeInputBox={removeInputBox}
+          inputBoxText={inputBoxText}
           exitChatRoom={exitChatRoom}
         />
       )}

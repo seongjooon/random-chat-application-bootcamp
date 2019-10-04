@@ -10,6 +10,8 @@ const Room = ({
   sendMessage,
   switchPage,
   handleTypingAction,
+  removeInputBox,
+  inputBoxText,
   exitChatRoom
 }) => {
   const [message, setMessage] = useState('');
@@ -31,23 +33,21 @@ const Room = ({
             value='Next'
           />
         </div>
-        <div>
+        <div className='first-message'>
           {!hasPeer ? <div>W8...</div> : <div>Entered {enterMessage}</div>}
         </div>
-        <div>{isTyping}</div>
-        <div>
+        <div className='chat-box'>
           {messageList.length
             ? messageList.map((message, index) => (
                 <div className='message-element' key={index}>
-                  <div>
-                    {message.username} : {message.message}
-                  </div>
-                  {/* <div>{message.message}</div> */}
+                  <div className='element-username'>{message.username}</div>
+                  <div className='element-message'>{message.message}</div>
                 </div>
               ))
             : null}
         </div>
         <div className='message-box'>
+          <div className='typing-message'>{isTyping}</div>
           <form
             onSubmit={e => {
               e.preventDefault();
@@ -55,18 +55,15 @@ const Room = ({
             }}
           >
             <input
+              className='input-box'
               onChange={e => {
                 setMessage(e.target.value);
+                removeInputBox(e.target.value);
                 handleTypingAction();
               }}
+              value={inputBoxText}
             />
-            <input
-              type='submit'
-              onClick={() => {
-                sendMessage({ username, message });
-              }}
-              value='Send'
-            />
+            <input className='send-box' type='submit' value='Send' />
           </form>
         </div>
       </div>

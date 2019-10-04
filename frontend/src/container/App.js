@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
   hasPeer: state.hasPeer,
   enterMessage: state.enterMessage,
   isTyping: state.isTyping,
-  messageList: state.messageList
+  messageList: state.messageList,
+  inputBoxText: state.inputBoxText
 });
 
 const mapDispatchToProps = dispatch => {
@@ -28,6 +29,9 @@ const mapDispatchToProps = dispatch => {
     },
     handleTypingAction() {
       socket.emit('is typing');
+    },
+    removeInputBox(text) {
+      dispatch({type:'INPUT_TEXT', text })
     },
     sendMessage(messageData) {
       if (messageData) {

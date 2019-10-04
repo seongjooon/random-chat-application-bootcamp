@@ -8,7 +8,9 @@ const Home = ({ switchPage }) => {
     <>
       <div className='home-root'>
         <div className='user-input-box'>
-          <div>What's your name?</div>
+          <div>
+            What's your <span>Nickname</span>?
+          </div>
           <form
             onSubmit={e => {
               e.preventDefault();
@@ -19,12 +21,7 @@ const Home = ({ switchPage }) => {
               className='home-name-box'
               onChange={e => setUsername(e.target.value)}
             />
-            <input
-              className='home-submit'
-              type='submit'
-              onClick={() => switchPage(username, false)}
-              value='Start'
-            />
+            <input className='home-submit' type='submit' value='Start' />
           </form>
         </div>
       </div>
