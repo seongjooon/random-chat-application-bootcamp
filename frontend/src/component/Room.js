@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Room.scss';
 
 const Room = ({
@@ -15,6 +15,11 @@ const Room = ({
   exitChatRoom
 }) => {
   const [message, setMessage] = useState('');
+  const chatingBox = useRef(null);
+
+  useEffect(() => {
+    chatingBox.current.scrollIntoView(false);
+  });
 
   return (
     <>
@@ -33,18 +38,20 @@ const Room = ({
             value='Next'
           />
         </div>
-        <div className='first-message'>
+        <div className='enter-message'>
           {!hasPeer ? <div>W8...</div> : <div>Entered {enterMessage}</div>}
         </div>
         <div className='chat-box'>
-          {messageList.length
-            ? messageList.map((message, index) => (
-                <div className='message-element' key={index}>
-                  <div className='element-username'>{message.username}</div>
-                  <div className='element-message'>{message.message}</div>
-                </div>
-              ))
-            : null}
+          <div ref={chatingBox}>
+            {messageList.length
+              ? messageList.map((message, index) => (
+                  <div className='message-element' key={index}>
+                    <div className='element-username'>{message.username}</div>
+                    <div className='element-message'>{message.message}</div>
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
         <div className='message-box'>
           <div className='typing-message'>{isTyping}</div>
@@ -58,8 +65,8 @@ const Room = ({
               className='input-box'
               onChange={e => {
                 setMessage(e.target.value);
-                removeInputBox(e.target.value);
                 handleTypingAction();
+                removeInputBox(e.target.value);
               }}
               value={inputBoxText}
             />

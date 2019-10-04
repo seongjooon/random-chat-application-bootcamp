@@ -22,20 +22,26 @@
       right: 0;
     }
   }
-  .first-message {
+  .enter-message {
     padding-top: 50px;
+    padding-left: 15px;
     font-size: 1.2rem;
     color: lightgreen;
   }
-  .message-element {
-    margin: 10px 0;
-    .element-username {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: blueviolet;
-    }
-    .element-message {
-      font-size: 1.7rem;
+  .chat-box {
+    padding-left: 15px;
+    overflow-y: scroll;
+    .message-element {
+      margin: 15px 0;
+      .element-username {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: blueviolet;
+      }
+      .element-message {
+        padding-left: 10px;
+        font-size: 1.4rem;
+      }
     }
   }
   .message-box {
@@ -47,30 +53,35 @@
       font-size: 1.2rem;
       color: gray;
     }
-    input {
-      &:focus {
-        outline: none;
+    form {
+      display: flex;
+      input {
+        &:focus {
+          outline: none;
+        }
+        margin: 1px;
+        height: 50px;
+        border: 1px solid;
+        border-radius: 4px;
       }
-      margin: 1px;
-      height: 50px;
-      border: 1px solid;
-      border-radius: 4px;
-    }
-    .input-box {
-      padding: 0;
-      width: 80%;
-      border-color: gray;
-      font-size: 1.2rem;
-    }
-    .send-box {
-      cursor: pointer;
-      width: 19%;
-      right: 0;
-      border-color: blueviolet;
-      background-color: blueviolet;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: white;
+      .input-box {
+        padding: 0;
+
+        width: 80%;
+        border-color: gray;
+        font-size: 1.2rem;
+      }
+      .send-box {
+        cursor: pointer;
+
+        width: 20%;
+        right: 0;
+        border-color: blueviolet;
+        background-color: blueviolet;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+      }
     }
   }
 }
