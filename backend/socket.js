@@ -44,8 +44,8 @@ const connectSocket = io => {
     socket.on('leave room', () => {
       const ROOM = ROOM_STORAGE[socket.id];
       socket.broadcast
-      .to(ROOM)
-      .emit('chat end', { username: USER_NAMES[socket.id] });
+        .to(ROOM)
+        .emit('chat end', { username: USER_NAMES[socket.id] });
       socket.leave(ROOM);
       let peerId = ROOM.split('#');
       peerId = peerId[0] === socket.id ? peerId[1] : peerId[0];

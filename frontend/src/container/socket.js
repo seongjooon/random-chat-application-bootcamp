@@ -25,7 +25,6 @@ const configureSocket = dispatch => {
 
   socket.on('exit chat', () => {
     dispatch({ type: 'HOME' });
-    leaveRoom();
   });
 
   socket.on('disconnect', () => {

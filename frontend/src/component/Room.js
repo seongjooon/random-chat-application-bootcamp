@@ -39,7 +39,7 @@ const Room = ({
           />
         </div>
         <div className='enter-message'>
-          {!hasPeer ? <div>W8...</div> : <div>Entered {enterMessage}</div>}
+          {!hasPeer ? <div>Wait..</div> : <div>Entered {enterMessage}</div>}
         </div>
         <div className='chat-box'>
           <div ref={chatingBox}>
