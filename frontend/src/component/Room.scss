@@ -13,7 +13,7 @@
       border: 1px solid;
       border-color: white;
       border-radius: 4px;
-      background-color: lightgray;
+      background-color: lightgrey;
       font-size: 1.3rem;
       font-weight: bold;
       color: blueviolet;
@@ -30,9 +30,25 @@
     color: lightgreen;
   }
   .chat-box {
+    position: relative;
     padding-left: 15px;
     overflow-y: scroll;
-    .message-element {
+    .right-element {
+      display: flex;
+      flex-direction: row-reverse;
+      margin: 15px 0;
+      right: 0;
+      .element-message {
+        margin-right: 10px;
+        padding: 5px 15px;
+        background-color: grey;
+        border-radius: 5px;
+        font-size: 1.4rem;
+      }
+    }
+    .left-element {
+      display: flex;
+      flex-direction: row;
       margin: 15px 0;
       .element-username {
         font-size: 1.1rem;
@@ -40,7 +56,10 @@
         color: blueviolet;
       }
       .element-message {
-        padding-left: 10px;
+        margin-left: 10px;
+        padding: 5px 15px;
+        background-color: lightgrey;
+        border-radius: 5px;
         font-size: 1.4rem;
       }
     }
@@ -52,7 +71,7 @@
     width: 100%;
     .typing-message {
       font-size: 1.2rem;
-      color: gray;
+      color: grey;
     }
     form {
       display: flex;
@@ -69,7 +88,7 @@
         padding: 0;
 
         width: 80%;
-        border-color: gray;
+        border-color: grey;
         font-size: 1.2rem;
       }
       .send-box {

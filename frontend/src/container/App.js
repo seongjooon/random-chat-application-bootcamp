@@ -40,7 +40,7 @@ const mapDispatchToProps = dispatch => {
     },
     exitChatRoom() {
       dispatch({ type: 'HOME' });
-      socket.emit('exit room')
+      socket.emit('exit room');
     }
   };
 };

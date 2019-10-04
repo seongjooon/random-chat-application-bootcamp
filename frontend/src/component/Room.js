@@ -45,9 +45,19 @@ const Room = ({
           <div ref={chatingBox}>
             {messageList.length
               ? messageList.map((message, index) => (
-                  <div className='message-element' key={index}>
-                    <div className='element-username'>{message.username}</div>
-                    <div className='element-message'>{message.message}</div>
+                  <div key={index}>
+                    {username === message.username ? (
+                      <div className='right-element' key={index}>
+                        <div className='element-message'>{message.message}</div>
+                      </div>
+                    ) : (
+                      <div className='left-element' key={index}>
+                        <div className='element-username'>
+                          {message.username}
+                        </div>
+                        <div className='element-message'>{message.message}</div>
+                      </div>
+                    )}
                   </div>
                 ))
               : null}
