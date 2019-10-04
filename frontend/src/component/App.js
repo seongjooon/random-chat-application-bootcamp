@@ -12,12 +12,12 @@ const App = ({
   messageList,
   switchPage,
   sendMessage,
-  restartButton,
-  handleTypingAction
+  handleTypingAction,
+  exitChatRoom
 }) => {
   return (
     <>
-      {!username ? (
+      {username ? (
         <Home switchPage={switchPage} />
       ) : (
         <Room
@@ -29,7 +29,7 @@ const App = ({
           sendMessage={sendMessage}
           switchPage={switchPage}
           handleTypingAction={handleTypingAction}
-          restartButton={restartButton}
+          exitChatRoom={exitChatRoom}
         />
       )}
     </>

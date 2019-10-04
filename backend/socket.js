@@ -35,37 +35,31 @@ function connectSocket(io) {
     });
 
     socket.on('is typing', () => {
-      socket.broadcast.to(ROOM_STORAGE[socket.id]).emit('typing');
-
-      setTimeout(() => {
-        socket.broadcast.to(ROOM_STORAGE[socket.id]).emit('stopTyping');
-      }, 2000);
+      const ROOM = ROOM_STORAGE[socket.id];
+      socket.broadcast.to(ROOM).emit('typing');
     });
 
     socket.on('send', messageData => {
-      const room = ROOM_STORAGE[socket.id];
-      io.to(room).emit('send message', messageData);
+      const ROOM = ROOM_STORAGE[socket.id];
+      io.to(ROOM).emit('send message', messageData);
     });
 
     socket.on('leave room', () => {
-      const room = ROOM_STORAGE[socket.id];
-      socket.leave(room);
-      socket.broadcast.to(room).emit('chat end');
-      let peerId = room.split('#');
+      const ROOM = ROOM_STORAGE[socket.id];
+      socket.leave(ROOM);
+      socket.broadcast
+        .to(ROOM)
+        .emit('chat end', { username: USER_NAMES[socket.id] });
+      let peerId = ROOM.split('#');
       peerId = peerId[0] === socket.id ? peerId[1] : peerId[0];
 
       findPeer(ALL_USERS[peerId]);
       findPeer(socket);
     });
 
-    // socket.on('disconnect', function() {
-    //   const room = ROOM_STORAGE[socket.id];
-    //   socket.broadcast.to(room).emit('chat end');
-    //   let peerId = room.split('#');
-    //   peerId = peerId[0] === socket.id ? peerId[1] : peerId[0];
-    //   // current socket left, add the other one to the queue
-    //   findPeer(ALL_USERS[peerId]);
-    // });
+    socket.on('disconnect', () => {
+      console.log('Disconnect');
+    });
   });
 }
 

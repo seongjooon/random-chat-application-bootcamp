@@ -9,22 +9,20 @@ const configureSocket = dispatch => {
     dispatch({ type: 'IS_TYPING' });
   });
 
-  socket.on('stopTyping', () => {
-    dispatch({ type: 'STOP_TYPING' });
-  });
-
   socket.on('enter message', ({ username }) => {
     dispatch({ type: 'ENTER_MESSAGE', username });
   });
 
   socket.on('send message', messageData => {
     dispatch({ type: 'SEND_MESSAGE', messageData });
+    // dispatch({ type: 'STOP_TYPING' });
   });
 
-  socket.on('chat end', () => {
+  socket.on('chat end', ({ username }) => {
+    dispatch({ type: 'DELETE_MESSAGE_LIST' });
     leaveRoom();
-    dispatch({ type: 'CREATE_RESTART', isRestart: true });
-    // dispatch({ type: 'DELETE_MESSAGE_LIST' });
+    dispatch({ type: 'SWITCH_PAGE', username });
+    joinRoom(username);
   });
 
   socket.on('disconnect', function(data) {

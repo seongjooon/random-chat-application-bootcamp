@@ -9,16 +9,23 @@ const Home = ({ switchPage }) => {
       <div className='home-root'>
         <div className='user-input-box'>
           <div>What's your name?</div>
-          <input
-            className='home-name-box'
-            onChange={e => setUsername(e.target.value)}
-          />
-          <input
-            className='home-submit'
-            type='submit'
-            onClick={() => switchPage(username, false)}
-            value='Start'
-          />
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              switchPage(username, false);
+            }}
+          >
+            <input
+              className='home-name-box'
+              onChange={e => setUsername(e.target.value)}
+            />
+            <input
+              className='home-submit'
+              type='submit'
+              onClick={() => switchPage(username, false)}
+              value='Start'
+            />
+          </form>
         </div>
       </div>
     </>

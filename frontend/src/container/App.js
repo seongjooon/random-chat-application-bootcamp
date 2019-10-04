@@ -10,8 +10,7 @@ const mapStateToProps = state => ({
   hasPeer: state.hasPeer,
   enterMessage: state.enterMessage,
   isTyping: state.isTyping,
-  messageList: state.messageList,
-  restartButton: state.restartButton
+  messageList: state.messageList
 });
 
 const mapDispatchToProps = dispatch => {
@@ -34,6 +33,10 @@ const mapDispatchToProps = dispatch => {
       if (messageData) {
         socket.emit('send', messageData);
       }
+    },
+    exitChatRoom() {
+      socket.emit('disconnect');
+      dispatch({ type: 'HOME' });
     }
   };
 };
