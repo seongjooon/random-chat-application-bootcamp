@@ -16,7 +16,7 @@
     "morgan": "~1.9.1",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "main": "index.js",
   "license": "MIT"
